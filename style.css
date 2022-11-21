@@ -1,0 +1,413 @@
+@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;1,700&display=swap');
+
+/* font-family: 'Be Vietnam Pro', sans-serif; */
+
+/* CUSTOM PROPERTIES */
+:root {
+    --light-clr: hsl(0, 0%, 100%);
+    --dark-clr: hsl(223, 12%, 11%);
+    --accent-clr: hsl(52, 100%, 97%);
+    --pink-clr: hsl(340, 96%, 62%);
+    --yellow-clr: hsl(50, 100%, 72%);
+    --nav-height: 1.8rem;
+    --number-of-columns: 4;
+    --font-weight-light: 300;
+    --font-weight-normal: 400;
+    --font-weight-medium: 500;
+    --font-weight-bold: 800;
+}
+
+@media screen and (min-width: 48em) {
+    :root{
+        --number-of-columns: 8;
+    }
+}
+
+@media screen and (min-width: 64em) {
+    :root{
+        --number-of-columns: 12;
+    }
+}
+
+/* RESET */
+
+*,
+*::before,
+*::after{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html{
+    /* font-size: 10px; */ /*setting 10px helps with in easily calculating the font size so
+    12 rem is 120px if left it will us the default font size which is 16 px and the math for that
+    is complicated e.g font size of 12 rem will be 12 * 16px
+    */
+    font-size: 62.5%; /*this 10px in percentage -- this will allow easily scaling the itmes when zoomed*/
+}
+
+body{
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-size: 1.4rem;
+    line-height: 1.5;
+    color: var(--dark-clr);
+}
+
+body.scroll_false{ /*referenc js file this is going to prevent the scroll from scrolling*/
+    overflow-y: hidden;
+}
+
+@media screen and (min-width: 48em) {
+    body{
+        font-size: 1.6rem;   
+    }
+}
+
+a{
+    text-decoration: none;
+    color: inherit;
+}
+
+ul{
+    list-style: none;
+}
+
+img,
+picture{
+    display: block; /*removes any spacing in the image*/
+    max-width: 100%; /*allows no overflow of image to parent containter*/
+}
+
+input,
+button{
+    font-size: inherit;
+    background-color: transparent;
+    border: none;
+    outline: none;
+}
+
+i{
+    font-size: 2.4rem;
+    line-height: 2.4rem;
+}
+
+section{
+    overflow: hidden;
+}
+
+/* REUSABLE CLASSES */
+.button{
+    display: inline-block;
+    font-weight: var(--font-weight-medium);
+    text-align: center;
+    cursor: pointer;
+    border-radius: .8rem;
+    transition: background-color .25s;
+}
+
+.button_dark{
+    background-color:var(--dark-clr);
+    color: var(--light-clr);
+}
+
+.button_dark:hover{
+    background-color:rgba(0, 0, 0, 0.770);
+}
+
+.button_normal{
+    font-size: 1.8rem;
+    padding: 1.5rem 3.6rem;
+}
+
+.button_pink{
+    background-color: var(--pink-clr);
+    color: var(--light-clr);
+}
+
+.button_pink:hover{
+    background-color: hsl(340, 96%, 70%);
+}
+
+.button_action{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container{
+    max-width: 117rem;
+    margin-inline: auto;
+    padding-inline: 1.8rem;
+}
+
+/* CUSTOM PARTS */
+
+.header{
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    width: 100%; /*we add this because position absolute makes images loose their width*/
+}
+
+.nav{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-block: var(--nav-height);
+}
+
+.nav_overlay{ /*this will cover the whole screen coz of the inset each left right top bottom starts at 0*/
+    position: fixed;
+    inset: 0; /*inset property in CSS is a shorthand for the four inset properties, top, right, bottom and left in one declaration.*/
+    background-color: rgba(0, 0, 0, .8);
+    opacity: 0;
+    visibility: hidden; /*ensures we can't see the element without changing the layout*/
+    transition: opacity .25s, visibility .25s;
+}
+
+.nav_overlay.active{
+    visibility: visible;
+    opacity: 1;
+}
+
+.nav_menu{
+    background-color: white;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    padding: 5.4rem 1.8rem;
+    width: 27rem;
+    transform: translateX(27rem); /*set it similar to width so that its completely removed from view as it has a right of 0*/
+    transition: transform .25s;
+}
+
+.nav_menu.active{
+    transform: translateX(0);
+}
+
+.nav_search{
+    display: flex;
+    align-items: center;
+    column-gap: 1rem;
+    padding: 1rem;
+    border: .15rem solid var(--dark-clr);
+    border-radius: .8rem;
+    margin-bottom: 1rem;
+}
+
+.nav_search:focus-within{ /*https://css-tricks.com/almanac/selectors/f/focus-within/*/
+    border-color: var(--pink-clr);
+}
+
+.nav_search_icon{
+    display: inline-flex;
+}
+
+.nav_search_input{
+    width: 100%;
+}
+
+.nav_search_input::placeholder{
+    font-size: 1.5rem;
+    color: inherit;
+    transition: opacity .25s;
+}
+
+.nav_search_input:focus::placeholder{
+    opacity: 0;
+}
+
+.nav_list{
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
+
+.nav_list_link{
+    display: inline-block;
+    padding: 0.5rem;
+    transition: color .25s;
+}
+
+.nav_list_link:hover{
+    color: var(--pink-clr);
+}
+
+.nav_button{
+    display: block;
+    width: 100%;
+    padding: 1.2rem 2.5rem;
+    margin-top: 1.5rem;
+}
+
+.nav_close{
+    position: absolute;
+    top: 1.8rem;
+    right: 1.8rem;
+}
+
+@media screen and (min-width: 64em) {
+    .nav_logo{
+        margin-right: 7.9rem;
+    }
+    .nav_menu{
+        position: initial;
+        width: initial;
+        background-color: transparent;
+        padding: 0;
+        transform: none;
+        transition: none;
+        display: flex;
+        align-items: center;
+    }
+
+    .nav_search{
+        margin-right: 3.2rem;
+        margin-bottom: 0;
+    }
+
+    .nav_list{
+        flex-direction: row;
+        gap: 2.4rem;
+    }
+
+    .nav_button{
+        margin-top: 0;
+        margin-left: 3.2rem;
+    }
+
+    .nav_close,
+    .nav_open{
+        display: none;
+    }
+}
+
+@media screen and (min-width: 75em) {
+    .nav_list{
+        gap: 4.8rem;
+    }
+}
+
+
+/*section*/
+.showcase{
+    padding-top: calc(var(--nav-height) * 2 + 3.4rem);
+    padding-bottom: 3.8rem;
+    background-image: linear-gradient(90deg, #ffe86e 50%, #fc7272 100%);
+    min-height: 100vh;
+    
+}
+
+.showcase_container{
+    gap: 3.835rem 3rem;
+}
+
+.row{
+    display: grid;
+    grid-template-columns: repeat(var(--number-of-columns), 1fr);
+}
+
+.row > *{
+    grid-column: span var(--number-of-columns);
+}
+
+.showcase_title{
+    font-size: clamp(3.6rem, 5vw, 7rem);
+    line-height: 4.6rem;
+    margin-bottom: 1.2rem;
+}
+
+.showcase_paragraph{
+    line-height: 2.4rem;
+    margin-bottom: 2.8rem;
+}
+
+.showcase_button{
+    margin-bottom: 3.8rem;
+}
+
+.showcase_stats{
+    display: flex;
+    column-gap: 3.8rem;   
+}
+
+.showcase_stats_stat{
+    display: block;
+}
+
+.showcase_stats_stat_count{
+    font-size: clamp(2.6rem, 5vw, 4.3rem);
+    line-height: 3.6rem;
+}
+
+.showcase_stats_stat_category{
+    font-size: clamp(1.4rem, 5vw, 2rem);
+    font-weight: var(--font-weight-normal);
+    line-height: 2.4rem;
+}
+
+@media screen and (min-width:23.5em) {
+    .showcase_image_group{
+        margin-inline: auto;
+    }
+}
+
+@media screen and (min-width:37.5em) {
+    .showcase_text_group{
+        grid-column: span 3;
+    }
+}
+
+@media screen and (min-width:48em) {
+    .showcase{
+        padding-top: calc(var(--nav-height) * 2 + 9.2rem);
+        padding-bottom: 10.4rem;
+    }
+    .showcase_text_group{
+        grid-column: 2/span 6;
+        text-align: center;
+    }
+    .showcase_title{
+        line-height: 5.6rem;
+    }
+
+    .showcase_paragraph{
+        font-size: 2rem;
+        line-height: 3.2rem;
+    }
+
+    .showcase_stats{
+        justify-content: center;
+        text-align: left;
+    }
+}
+
+@media screen and (min-width:64em) {
+    .showcase_text_group{
+        grid-column: span 6;
+        text-align: left;
+    }
+    .showcase_title{
+        margin-bottom: 2rem;
+        line-height: 7.6rem;
+    }
+
+    .showcase_paragraph{
+        margin-bottom: 4rem;
+        padding-right: 5rem;
+    }
+    .showcase_button{
+        margin-bottom: 7rem;
+    }
+
+    .showcase_stats{
+        justify-content: left;
+    }
+
+    .showcase_image_group{
+        grid-column: span 6;
+    }
+}

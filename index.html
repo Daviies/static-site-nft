@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Artistry</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Remix icons -->
+        <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+        <!-- Scroll Reveal -->
+        <script src="https://unpkg.com/scrollreveal@4"></script>
+        <!-- css file -->
+        <link rel="stylesheet" href="./style.css">
+    </head>
+    <body>
+        <!-- HEADER -->
+        <header class="header">
+            <nav class="nav container">
+                <a href="./index.html" class="nav_logo">
+                    <img src="./images/logo.svg" alt="" class=".nav_logo_image">
+                </a>
+                <div class="nav_overlay"></div>  <!-- CLOSES THE MENU ITS THE DARK PART IN MENU LEFTSIDE -->
+                <div class="nav_menu">
+                    <form action="" class="nav_search">
+                        <span class="nav_search_icon">
+                            <i class="ri-search-line"></i>
+                        </span>
+                        <input placeholder="Search" type="text" class="nav_search_input">
+                    </form>
+                    <ul class="nav_list">
+                        <li class="nav_list_item">
+                            <a href="#" class="nav_list_link">Explore</a>
+                        </li>
+                        <li class="nav_list_item">
+                            <a href="#" class="nav_list_link">Marketplace</a>
+                        </li>
+                        <li class="nav_list_item">
+                            <a href="#" class="nav_list_link">Community</a>
+                        </li>
+                    </ul>
+                    <a href="#" class="button button_dark nav_button">Connect Wallet</a>
+                    <button type="button" data-toggle="close" class="button button_action nav_close">
+                        <i class="ri-close-fill"></i>
+                    </button>
+                </div>
+                <button type="button" data-toggle="open" class="button button_action nav_open">
+                    <i class="ri-menu-2-line"></i>
+                </button>
+            </nav>
+        </header>
+
+        <!-- MAIN -->
+        <main>
+            <section class="showcase">
+                <div class="showcase_container row container">
+                    <div class="showcase_text_group">
+                        <h1 class="showcase_title title title_main"> <!-- FOR SEO purposes its recommended to have one h1 -->
+                            Explore Legendary Art and Nft's.
+                        </h1>
+                        <p class="showcase_paragraph">
+                            Discover, collect and sell extraordinary NFT's through our game-changing platform. Express yourself by your artwork through us.
+                        </p>
+                        <a href="#" class="button button_normal button_pink showcase_button">
+                            create NFT
+                        </a>
+                        <div class="showcase_stats">
+                            <h2>
+                                <span class="showcase_stats_stat showcase_stats_stat_count">27k+</span>
+                                <span class="showcase_stats_stat showcase_stats_stat_category">Artworks</span>
+                            </h2>
+                            <h2>
+                                <span class="showcase_stats_stat showcase_stats_stat_count">10k+</span>
+                                <span class="showcase_stats_stat showcase_stats_stat_category">Artists</span>
+                            </h2>
+                            <h2>
+                                <span class="showcase_stats_stat showcase_stats_stat_count">19k+</span>
+                                <span class="showcase_stats_stat showcase_stats_stat_category">Auctions</span>
+                            </h2>
+                        </div>
+                    </div>
+                    <div class="showcase_image_group">
+                        <picture> <!-- THIS ALLOWS TO USE SPECIFIC IMAGES FOR DIFFERENT SCREEN SIZES -->
+                            <source media="(min-width: 64em)" srcset="./images/showcase_image_large.png"> <!-- THIS SHOWS THE LARGE IMAGE AFTER SCREEN OF 640 PX  -->
+                            <img src="./images/showcase_image.png" alt=""> <!-- THIS SHOWS SMALLER ONE -->
+                        </picture>
+                    </div>
+                </div>
+            </section>
+        </main>
+        <script src="./app.js" async defer></script>
+    </body>
+</html>
